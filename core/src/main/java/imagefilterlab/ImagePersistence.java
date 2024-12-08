@@ -29,9 +29,8 @@ public class ImagePersistence {
     /**
      * Saves an image into the specified file.
      * 
-     * @param image     The {@code BufferedImage} object representing the image
-     * @param filepath  The file which the image will be written into
-     * @param imgFormat The format of the image
+     * @param image    The {@code BufferedImage} object representing the image
+     * @param filepath The file which the image will be written into
      * @throws IOException Thrown if any error occurs while writing to the file
      */
     public static void saveImage(BufferedImage image, String filepath, String imgFormat) throws IOException {
@@ -39,4 +38,24 @@ public class ImagePersistence {
         ImageIO.write(image, imgFormat, outputFile);
     }
 
+    /**
+     * Given a image filepath, extracts the file extension to be used when writing
+     * to the file.
+     * 
+     * @param filepath The path to the file containing the image
+     * @return The respective file extension
+     */
+    public static String extractImgFormat(String filepath) {
+        String format = null;
+
+        if (filepath != null) {
+            int dotIndex = filepath.lastIndexOf(".");
+
+            if (dotIndex >= 0) {
+                format = filepath.substring(dotIndex + 1);
+            }
+        }
+
+        return format;
+    }
 }
